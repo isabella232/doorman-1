@@ -9,6 +9,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
               libffi-dev \
               musl \
               nodejs \
+              postgresql-client \
               postgresql-dev \
               py-pip \
               python \
@@ -39,6 +40,7 @@ COPY . /src/
 RUN rm -rf /etc/service \
   && mv /src/docker/service /etc/ \
   && mv /src/docker/redis.conf /etc/ \
+  && mv /src/docker/wait-for-postgres.sh /src/ \
   && if [ ! -f /src/settings.cfg ]; then \
        mv /src/docker/default-settings.cfg /src/settings.cfg; \
      fi \
