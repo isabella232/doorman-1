@@ -50,6 +50,7 @@ RUN rm -rf /etc/service \
 RUN cd /src/ \
   && bower install --allow-root \
   && python manage.py assets build \
+  && chown -R doorman:doorman /src/doorman/ \
   && mkdir /var/log/doorman/ \
   && chown doorman:doorman /var/log/doorman/
 
