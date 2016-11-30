@@ -213,7 +213,10 @@ class ProdConfig(Config):
 
     ENFORCE_SSL = True
 
-    SQLALCHEMY_DATABASE_URI = ''
+    if os.environ.get('POSTGRES_PORT') and os.environ.get('POSTGRES_USER') and os.environ.get('POSTGRES_PASSWORD'):
+        SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}/doorman'.format(os.environ.get('POSTGRES_USER'), os.environ.get('POSTGRES_PASSWORD'), os.environ.get('POSTGRES_PORT'))
+    else:
+        SQLALCHEMY_DATABASE_URI = ''
 
     DOORMAN_ENROLL_SECRET = [
 
