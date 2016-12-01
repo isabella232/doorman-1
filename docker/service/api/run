@@ -5,6 +5,8 @@ cd /src/
 export DOORMAN_ENV=prod
 export DOORMAN_SETTINGS=$PWD/settings.cfg
 
+chpst -u doorman -U doorman /usr/bin/python manage.py db upgrade
+
 exec chpst \
   -u doorman \
   -U doorman \
